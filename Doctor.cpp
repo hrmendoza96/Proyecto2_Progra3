@@ -9,8 +9,7 @@ using namespace std;
 Doctor::Doctor(){
 
 }
-Doctor::Doctor(string nombre, string nacionalidad, int edad, double salario,
-  bool especialidad):Persona(nombre, nacionalidad,edad,salario ){
+Doctor::Doctor(string nombre, bool especialidad):Persona(nombre ){
   this->especialidad=especialidad;
 }
 bool Doctor::getEspecialidad(){
@@ -18,9 +17,6 @@ bool Doctor::getEspecialidad(){
 }
 void Doctor::setEspecialidad(bool especialidad){
   this->especialidad=especialidad;
-}
-double Doctor::DeduccionImpuestos(){
-
 }
 double Doctor::ValorEnELMercado(){
   if(especialidad==true){

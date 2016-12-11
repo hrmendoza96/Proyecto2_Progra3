@@ -10,10 +10,9 @@ class Doctor : public Persona{
 
   public:
     Doctor();
-    Doctor(string, string, int, double, bool);
+    Doctor(string, bool);
     bool getEspecialidad();
     void setEspecialidad(bool);
-    virtual double DeduccionImpuestos(); //?
     virtual double ValorEnELMercado();
     ~Doctor();
 

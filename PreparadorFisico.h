@@ -10,10 +10,9 @@ class PreparadorFisico : public Persona{
 
   public:
     PreparadorFisico();
-    PreparadorFisico(string, string, int, double, int);
-    int getAnosExperiencia();
-    void setAnosExperiencia(int);
-    virtual double DeduccionImpuestos(); //?
+    PreparadorFisico(string, int);
+    int getAnos_Experiencia();
+    void setAnos_Experiencia(int);
     virtual double ValorEnELMercado();
     ~PreparadorFisico();
 

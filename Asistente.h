@@ -10,10 +10,9 @@ class Asistente : public Persona{
 
   public:
     Asistente();
-    Asistente(string, string, int, double, bool);
+    Asistente(string,bool);
     bool getTitulo();
     void setTitulo(bool);
-    virtual double DeduccionImpuestos(); //?
     virtual double ValorEnELMercado();
     ~Asistente();
 

@@ -9,8 +9,7 @@ using namespace std;
 PreparadorFisico::PreparadorFisico(){
 
 }
-PreparadorFisico::PreparadorFisico(string nombre, string nacionalidad, int edad, double salario,
-  int Anos_Experiencia):Persona(nombre, nacionalidad,edad,salario ){
+PreparadorFisico::PreparadorFisico(string nombre,int Anos_Experiencia):Persona(nombre){
   this->Anos_Experiencia=Anos_Experiencia;
 }
 int PreparadorFisico::getAnos_Experiencia(){
@@ -18,9 +17,6 @@ int PreparadorFisico::getAnos_Experiencia(){
 }
 void PreparadorFisico::setAnos_Experiencia(int Anos_Experiencia){
   this->Anos_Experiencia=Anos_Experiencia;
-}
-double PreparadorFisico::DeduccionImpuestos(){
-
 }
 double PreparadorFisico::ValorEnELMercado(){
   return Anos_Experiencia*10;

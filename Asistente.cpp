@@ -9,8 +9,7 @@ using namespace std;
 Asistente::Asistente(){
 
 }
-Asistente::Asistente(string nombre, string nacionalidad, int edad, double salario,
-  bool titulo):Persona(nombre, nacionalidad,edad,salario ){
+Asistente::Asistente(string nombre,bool titulo):Persona(nombre){
   this->titulo=titulo;
 }
 bool Asistente::getTitulo(){
@@ -18,9 +17,6 @@ bool Asistente::getTitulo(){
 }
 void Asistente::setTitulo(bool titulo){
   this->titulo=titulo;
-}
-double Asistente::DeduccionImpuestos(){
-
 }
 double Asistente::ValorEnELMercado(){
   if(titulo==true){
