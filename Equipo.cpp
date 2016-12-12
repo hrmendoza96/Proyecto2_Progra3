@@ -16,6 +16,9 @@ Equipo::Equipo(string nombreEquipo, CuerpoTecnico* staff){
   this->staff=staff;
   this->nombreEquipo=nombreEquipo;
 }
+Equipo::Equipo(string nombreEquipo){
+  this->nombreEquipo=nombreEquipo;
+}
 Equipo::Equipo(){
 
 }

@@ -22,6 +22,7 @@ class Equipo{
 
   public:
     Equipo(string, CuerpoTecnico*);
+    Equipo(string);
     CuerpoTecnico* getStaff();
     void setNombreEquipo(string);
     string getNombreEquipo();

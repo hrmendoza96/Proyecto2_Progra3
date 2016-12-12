@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <vector>
 #include "Persona.h"
 #include "Entrenador.h"
@@ -150,6 +151,21 @@ int main(int argc, char const *argv[]) {
 
     }
     if(opcion=='2'){ //cargar
+      string STRING;
+    	ifstream infile;
+    	infile.open ("Equipos.txt");
+        while(!infile.eof()) // To get you all the lines.
+        {
+	        getline(infile,STRING); // Saves the line in STRING.
+          ListaEquipos.push_back(new Equipo(STRING));
+	        //cout<<STRING; // Prints our STRING.
+        }
+	       infile.close();
+	      //system ("pause");
+        ListaEquipos.erase(ListaEquipos.begin() + ListaEquipos.size()-1);
+        printw("\n");
+        printw("Equipos cargados exitosamente");
+        printw("\n");
 
     }
     if(opcion=='3'){ //ver lista equipos
@@ -163,63 +179,70 @@ int main(int argc, char const *argv[]) {
 
     }
     if(opcion=='4'){
-      clear();
-      char cantidad[100];
-      printw("Ingrese la cantidad de partidos que desea en el torneo:");
-      getstr(cantidad);
-      int cantidadPartidos = conversionATOI(cantidad);
-      for (int i = 0; i < cantidadPartidos; i++) {
-        for (int j = 0; j < ListaEquipos.size(); j++) {
-            printw("%d", j);
-            addch(')');
-            addch(' ');
-            printw(ListaEquipos.at(j)->toString().c_str());
-        }//Fin del for
-        printw("\n");
-        char EquipoEscoger[100];
-        int pos=0;
-        Partido* match;
-        printw("Escoja un equipo para crear partido: ");
-        getstr(EquipoEscoger);
-        pos = conversionATOI(EquipoEscoger);
-        if ((pos < 0) || (pos >= ListaEquipos.size())) {
-            for (;(pos < 0) || (pos >= ListaEquipos.size());) {
-                printw("\n");
-                printw("No ingreso una posicion valida.");
-                printw("\n");
-                printw("Escoja un equipo para crear partido:");
-                getstr(EquipoEscoger);
-                pos = conversionATOI(EquipoEscoger);
-            }//fin for validacion
-        }//Validar posicion
-        printw("\n");
-        char EquipoEscoger2[100];
-        int pos2 =0;
-        printw("Escoja otro equipo para crear partido: ");
-        getstr(EquipoEscoger2);
-        pos2 = conversionATOI(EquipoEscoger2);
-        if ((pos2 < 0) || (pos2 >= ListaEquipos.size())) {
-            for (;(pos2 < 0) || (pos2 >= ListaEquipos.size());) {
-                printw("\n");
-                printw("No ingreso una posicion valida.");
-                printw("\n");
-                printw("Escoja otro equipo para crear partido:");
-                getstr(EquipoEscoger2);
-                pos2 = conversionATOI(EquipoEscoger2);
-            }//fin for validacion
-        }//Validar posicion
-        match= new Partido(ListaEquipos.at(pos),ListaEquipos.at(pos2), 0, 0); //ambos equipos comienzan con 0 goles
+      if(ListaEquipos.size()>0){
+        clear();
+        char cantidad[100];
+        printw("Ingrese la cantidad de partidos que desea en el torneo:");
+        getstr(cantidad);
+        int cantidadPartidos = conversionATOI(cantidad);
+        for (int i = 0; i < cantidadPartidos; i++) {
+          for (int j = 0; j < ListaEquipos.size(); j++) {
+              printw("%d", j);
+              addch(')');
+              addch(' ');
+              printw(ListaEquipos.at(j)->toString().c_str());
+          }//Fin del for
+          printw("\n");
+          char EquipoEscoger[100];
+          int pos=0;
+          Partido* match;
+          printw("Escoja un equipo para crear partido: ");
+          getstr(EquipoEscoger);
+          pos = conversionATOI(EquipoEscoger);
+          if ((pos < 0) || (pos >= ListaEquipos.size())) {
+              for (;(pos < 0) || (pos >= ListaEquipos.size());) {
+                  printw("\n");
+                  printw("No ingreso una posicion valida.");
+                  printw("\n");
+                  printw("Escoja un equipo para crear partido:");
+                  getstr(EquipoEscoger);
+                  pos = conversionATOI(EquipoEscoger);
+              }//fin for validacion
+          }//Validar posicion
+          printw("\n");
+          char EquipoEscoger2[100];
+          int pos2 =0;
+          printw("Escoja otro equipo para crear partido: ");
+          getstr(EquipoEscoger2);
+          pos2 = conversionATOI(EquipoEscoger2);
+          if ((pos2 < 0) || (pos2 >= ListaEquipos.size())) {
+              for (;(pos2 < 0) || (pos2 >= ListaEquipos.size());) {
+                  printw("\n");
+                  printw("No ingreso una posicion valida.");
+                  printw("\n");
+                  printw("Escoja otro equipo para crear partido:");
+                  getstr(EquipoEscoger2);
+                  pos2 = conversionATOI(EquipoEscoger2);
+              }//fin for validacion
+          }//Validar posicion
+          match= new Partido(ListaEquipos.at(pos),ListaEquipos.at(pos2), 0, 0); //ambos equipos comienzan con 0 goles
+
+          printw("\n");
+          printw("Partido Creado");
+          printw("\n");
+
+          torneo->setPartido(match);
+        } //fin for externo
 
         printw("\n");
-        printw("Partido Creado");
+        printw("Torneo Creado");
+        printw("\n");
+      }else{
+        printw("\n");
+        printw("No hay equipos");
         printw("\n");
 
-        torneo->setPartido(match);
-      } //fin for externo
-
-      printw("\n");
-      printw("Torneo Creado");
-      printw("\n");
+      }
 
     }
     if(opcion=='5'){ //ver lista de partidos
@@ -231,7 +254,7 @@ int main(int argc, char const *argv[]) {
           printw("\n");
           printw(torneo->getPartido(i)->getLocal()->toString().c_str());
           //printw("\n");
-          printw("vs");
+          printw("vs");ofstream archivo;
           printw("\n");
           printw(torneo->getPartido(i)->getVisita()->toString().c_str());
       }//Fin del for
@@ -239,6 +262,15 @@ int main(int argc, char const *argv[]) {
 
     }
     if(opcion=='6'){ //guardar equipos
+      ofstream archivo4;
+      archivo4.open("Equipos.txt");
+      for (int i = 0; i < ListaEquipos.size(); i++) {
+        archivo4 << ListaEquipos.at(i)->toString();
+      }
+      archivo4.close();
+      printw("\n");
+      printw("Equipos guardados exitosamente");
+
 
     }
   }while(opcion!='7');
